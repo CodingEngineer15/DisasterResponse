@@ -13,6 +13,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer, T
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.multiclass import OneVsRestClassifier
+from sklearn.model_selection import GridSearchCV
 
 import nltk
 import re
@@ -59,13 +60,20 @@ def tokenize(text):
 
 def build_model():
     """Builds the pipeline which includes the data transformation the and ML algoithm"""
+    params_sgd = {
+        'sgd__estimator__alpha': [0.01,0.001,0.0001],
+            'sgd__estimator__penalty':['l2', 'l1']
+    }
+    
     pipeline = Pipeline([
     ('vect', CountVectorizer(tokenizer=tokenize)),
     ('tfidf',TfidfTransformer()),
-    ('sgd',OneVsRestClassifier(SGDClassifier(alpha=0.0001,penalty='l2')))
+    ('sgd',OneVsRestClassifier(SGDClassifier()))
     ])
+    
+    grid_sgd = GridSearchCV(pipeline,param_grid=params_sgd)
 
-    return pipeline
+    return grid_sgd
 
 
 def evaluate_model(model, X_test, Y_test, cat_names):
