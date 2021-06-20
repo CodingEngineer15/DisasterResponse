@@ -1,5 +1,9 @@
 # Disaster Response Pipeline Project
 
+### Dataset issues
+Note that the dataset is imbalanced and includes an even distribution of all the labels with some labels being absent such as the child_alone category.
+The related category also had a 2 flag which likely means that it was ambiguous whether the message was related or not. Therefore the value of 2 was replaced with the mode which in this instance is 1 (a 1 means that the category is related to the message).
+
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
