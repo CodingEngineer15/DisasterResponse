@@ -1,7 +1,7 @@
 # Disaster Response Pipeline Project
 
 ### Project overview
-The code in this produces uses a database of messages produced in
+The code in this repository produces uses a database of messages produced in
 reponse to a disaster and their corresponding categories. This data is
 cleansed and outputted to an sqlite database. This process is
 performed in the data folder.
